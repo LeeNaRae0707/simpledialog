@@ -1,5 +1,6 @@
 package kr.hs.duk4957_emirim.SimpleDialog;
 
+
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import kr.hs.duk4957_emirim.simpledialog.R;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    String[] items={"젤리빈","킷켓","롤리팝"};
+    String[] items={"젤리빈", "킷캣", "롤리팝"};
     Button but;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button but=(Button)findViewById(R.id.but_dialog);
         but.setOnClickListener(this);
     }
+
     /**
      * Called when a view has been clicked.
      *
@@ -25,16 +29,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
+
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setTitle("First Dialog");
-        dialog.setMessage("This is message part");
-        dialog.setIcon(R.drawable.first_icon);
+
+        /*dialog.setSingleChoiceItems(items, checkArr ,new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                but.setText(items(which));
+            }
+        });*/
+        dialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+        });
+
+        dialog.setIcon(R.drawable.bubble);
         dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this,"대화상자의 확인 버튼을 클릭했음",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "대화상자의 화인 버튼을 클릭했음 . ", Toast.LENGTH_LONG).show();
             }
         });
+
         dialog.show();
     }
 }
